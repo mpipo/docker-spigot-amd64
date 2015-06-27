@@ -6,7 +6,7 @@ How to use:
 - You need to accept the Minecraft EULA by running:
 
 ```
-docker run mpipo/spigot-amd64 accepteula
+docker run -e EULA=true mpipo/spigot-amd64
 ```
 
 - You might want to mount the server dir to somewhere on the host.
@@ -25,8 +25,10 @@ docker run -p hostport:25565 mpipo/spigot-amd64
 
 Add those together and you'll get something like this:
 ```
-docker run -p 25565:25565 -v /home/mpipo/mcserver:/minecraft --name spigot mpipo/spigot-amd64 accepteula
+docker run -e EULA=true -p 25565:25565 -v /home/mpipo/mcserver:/minecraft --name spigot mpipo/spigot-amd64
 ```
+
+**IF YOU WANT TO MOUNT VOLUMES AS A BIND, YOU NEED TO ADD AN ACCOUNT NAMED "MINECRAFT" IN YOUR HOST, OR BAD THINGS WILL HAPPEN!**
 
 ## Additional flags
 
