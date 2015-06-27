@@ -8,7 +8,7 @@ accepteula() {
 if [ "$EULA" = "true" ]; then
 	echo "eula=true" > "/minecraft/eula.txt"
 else
-	echo "You need to use the accepteula parameter."
+	echo "You need to accept the EULA. Use -e EULA=true in Docker."
 	echo "Exiting..."
 	exit 1
 fi
@@ -18,7 +18,7 @@ buildspigot() {
 	mkdir -p /minecraft/build
 	cd /minecraft/build
 	wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-	HOME=/minecraft/build java -jar BuildTools.jar
+	HOME=/minecraft/build java -jar BuildTools.jar --rev "$1"
 	cp /minecraft/build/Spigot/Spigot-Server/target/spigot-1.8*.jar /minecraft/spigot.jar
 }
 
