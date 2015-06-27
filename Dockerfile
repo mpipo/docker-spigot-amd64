@@ -10,10 +10,9 @@ RUN pacman -S --noconfirm --needed openssl pacman
 RUN pacman-db-upgrade
 
 # Install Java
-RUN pacman -S --noconfirm --needed jre8-openjdk-headless
+RUN pacman -S --noconfirm --needed jre8-openjdk-headless wget git
 
-# Install wget
-RUN pacman -S --noconfirm --needed wget
+# Pacman breaks again... wget needs to be installed alongside with ca-certificates thingy
 
 # Clean up cache
 RUN pacman -Scc --noconfirm
@@ -21,13 +20,14 @@ RUN rm -rf /var/cache/pacman/pkg
 
 # Add Minecraft user
 RUN useradd -m -g users -s /bin/bash -m -d /minecraft minecraft
+RUN chown -R minecraft:users /minecraft
+
+# Add build and init script
+ADD startServer.sh /
+
+RUN chmod +x /startServer.sh
 
 # Switch to Minecraft user
 USER minecraft
 
-# Add build and init script
-ADD startServer.sh /minecraft
-
-RUN chmod 755 /minecraft/startServer.sh
-
-ENTRYPOINT ["/bin/bash", "-c", "/minecraft/startServer.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "/startServer.sh"]

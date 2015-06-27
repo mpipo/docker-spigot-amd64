@@ -5,12 +5,13 @@ startmc() {
 }
 
 accepteula() {
-if [ "$1" = "accepteula" ]; then
-	echo "eula=true" > ~/eula.txt"
+if [ "$EULA" = "true" ]; then
+	echo "eula=true" > "/minecraft/eula.txt"
 else
 	echo "You need to use the accepteula parameter."
 	echo "Exiting..."
 	exit 1
+fi
 }
 
 buildspigot() {
@@ -21,13 +22,13 @@ buildspigot() {
 	cp /minecraft/build/Spigot/Spigot-Server/target/spigot-1.8*.jar /minecraft/spigot.jar
 }
 
-if [ $(cat ~/eula.txt) = "eula=true" ]; then
+if [ -f /minecraft/eula.txt ]; then
 	:
 else
 	accepteula
 fi
 
-if [ -f ~/spigot.jar ]; then
+if [ -f /minecraft/spigot.jar ]; then
 	startmc
 else
 	buildspigot
