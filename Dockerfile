@@ -5,6 +5,7 @@ FROM base/archlinux
 # Pacman fixes
 
 RUN pacman -Sy --noconfirm
+RUN pacman -S --noconfirm --needed archlinux-keyring
 RUN pacman -S --noconfirm --needed openssl pacman
 RUN pacman-db-upgrade
 
