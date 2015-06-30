@@ -18,7 +18,7 @@ buildspigot() {
 	mkdir -p /minecraft/build
 	cd /minecraft/build
 	wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-	HOME=/minecraft/build java -jar BuildTools.jar --rev "$1"
+	HOME=/minecraft/build java -jar BuildTools.jar --rev "$BUILD_VERSION"
 	cp /minecraft/build/Spigot/Spigot-Server/target/spigot-1.8*.jar /minecraft/spigot.jar
 }
 
