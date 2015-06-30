@@ -31,7 +31,7 @@ docker run -p hostport:25565 mpipo/spigot-amd64
 
 Add those together and you'll get something like this:
 ```
-docker run -e EULA=true -p 25565:25565 -v /home/mpipo/mcserver:/minecraft --name spigot mpipo/spigot-amd64
+docker run -e EULA=true -e BUILD_VERSION=1.8.7 -p 25565:25565 -v /home/mpipo/mcserver:/minecraft --name spigot mpipo/spigot-amd64
 ```
 
 **IF YOU WANT TO MOUNT VOLUMES AS A BIND, YOU NEED TO ADD AN ACCOUNT NAMED "MINECRAFT" IN YOUR HOST, OR BAD THINGS WILL HAPPEN!**
