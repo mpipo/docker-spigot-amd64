@@ -15,6 +15,12 @@ docker run -e EULA=true mpipo/spigot-amd64
 docker run -v /some/where/on/host:/minecraft mpipo/spigot-amd64
 ```
 
+- Spigot's BuildTools doesn't select any version as default, you must specify it as well.
+
+```
+docker run -e BUILD_VERSION=1.8.7 mpipo/spigot-amd64
+```
+
 - Don't forget to port forward!
 
 ```
