@@ -1,5 +1,5 @@
 # docker-spigot-amd64
-Spigot server for AMD64/EM64T
+Spigot server for amd64
 
 How to use:
 
